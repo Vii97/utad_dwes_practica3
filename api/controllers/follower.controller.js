@@ -1,69 +1,66 @@
-const { followerModel, userModel } = require('../models');
+const { followerModel } = require('../models');
+const { handleHTTPResponse, handleHTTPError, INTERNAL_SERVER_ERROR } = require('../utils/handleResponse.util');
+const { matchedData } = require('express-validator');
 
-// Funciones
-const getFollower = async (removeEventListener, res) => {
+// Obtener todos los seguidores
+const getFollower = async (req, res) => {
     try {
-        const data = await followerModel.find({});
-        res.send(data);
+        const data = await followerModel.find({}).populate('follower following');
+        handleHTTPResponse(res, "Followers retrieved successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving followers', error });
+        console.log("ERROR[follower.controller/getFollower]:" + error);
+        handleHTTPError(res, "Error retrieving followers", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Get by ID
+// Obtener un seguidor por ID
 const getFollowerByID = async (req, res) => {
     try {
-        const { id } = req.params;
-        const data = await followerModel.findById(id);
-        if (!data) {
-            return res.status(404).send({ message: 'Follower not found' });
-        }
-        res.send(data);
+        const { id } = matchedData(req);
+        const data = await followerModel.findById(id).populate('follower following');
+        handleHTTPResponse(res, "Follower retrieved successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving followers', error });
+        console.log("ERROR[follower.controller/getFollowerByID]:" + error);
+        handleHTTPError(res, "Error retrieving follower", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Create new follower
+// Crear un nuevo seguidor
 const createFollower = async (req, res) => {
     try {
-        const { body } = req;
-        const data = await followerModel.create(body);
-        res.send(data);
+        const { body } = matchedData(req);
+        const newFollower = new followerModel(body);
+        const savedFollower = await newFollower.save();
+        handleHTTPResponse(res, "Follower created successfully", savedFollower);
     } catch (error) {
-        res.status(500).send({ message: 'Error creating followers', error });
+        console.log("ERROR[follower.controller/createFollower]:" + error);
+        handleHTTPError(res, "Error creating follower", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Update follower
+// Actualizar un seguidor
 const updateFollower = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { body } = req;
+        const { id, ...body } = matchedData(req);
         const data = await followerModel.findByIdAndUpdate(id, body);
-        if (!data) {
-            return res.status(404).send({ message: 'Follower not found' });
-        }
-        res.send(data);
+        handleHTTPResponse(res, "Follower updated successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error updating followers', error });
+        console.log("ERROR[follower.controller/updateFollower]:", error);
+        handleHTTPError(res, "Error updating follower", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Delete follower
+// Borrar un seguidor
 const deleteFollower = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = matchedData(req);
         const data = await followerModel.findByIdAndDelete(id);
-        if (!data) {
-            return res.status(404).send({ message: 'Follower not found' });
-        }
-        res.send({ message: 'Follower deleted successfully' });
+        handleHTTPResponse(res, "Follower deleted successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error deleting followers', error });
+        console.log("ERROR[follower.controller/deleteFollower]:" + error);
+        handleHTTPError(res, "Error deleting follower", INTERNAL_SERVER_ERROR);
     }
 };
-
 
 // Exportar módulo
 module.exports = {
@@ -72,4 +69,4 @@ module.exports = {
     createFollower,
     updateFollower,
     deleteFollower
-}
+};

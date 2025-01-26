@@ -1,0 +1,66 @@
+// POST
+
+###
+
+GET http://localhost:3000/api/post/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc4Mzc4NjksImV4cCI6MTczNzg0NTA2OX0.oFz6Jy6sqgkSfyI4v28EXOV6gOBuTraQHyqvCN5D4qE
+
+### Devuelve el post de una foto grupal posteada por Jett
+
+GET http://localhost:3000/api/post/673785e9f3441da8d75fc8f4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+
+###
+
+POST http://localhost:3000/api/post/ HTTP/1.1
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc4Mzc4NjksImV4cCI6MTczNzg0NTA2OX0.oFz6Jy6sqgkSfyI4v28EXOV6gOBuTraQHyqvCN5D4qE
+Content-Type: application/json
+
+{
+    "user": "67365186eeed3b908fca32a1",
+    "txt": "Holaaa",
+    "img": "https://www.riotgames.com/darkroom/730/e501341e485a96f9ada46fc532cff21e:45a88ae13d76f0300bd958de6906a0f2/valorant-community-artist-final.png"
+}
+
+###
+
+PUT http://localhost:3000/api/post/673785e9f3441da8d75fc8f4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+Content-Type: application/json
+
+{
+    "user": "67365186eeed3b908fca32a1",
+    "txt": "¡Foto grupal!",
+    "img": "https://www.riotgames.com/darkroom/730/e501341e485a96f9ada46fc532cff21e:45a88ae13d76f0300bd958de6906a0f2/valorant-community-artist-final.png"
+}
+
+###
+
+DELETE http://localhost:3000/api/post/67378b86d06a6cef6939175b HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+
+###
+POST http://localhost:3000/api/post/images HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc4Mzc4NjksImV4cCI6MTczNzg0NTA2OX0.oFz6Jy6sqgkSfyI4v28EXOV6gOBuTraQHyqvCN5D4qE
+Content-Type: multipart/form-data; boundary=Boundry
+
+--Boundry
+Content-Disposition: form-data; name="img"; filename="image.jpg"
+Content-Type: image/jpeg
+
+< ./storage/image.jpg
+--Boundry--
+
+--Boundry
+Content-Disposition: form-data; name="txt"
+
+texto del post
+--Boundry--
+
+--Boundry
+Content-Disposition: form-data; name="user"
+
+678ee09ddf18bf22dff50eae
+--Boundry--
+
+###

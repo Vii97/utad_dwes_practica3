@@ -6,12 +6,14 @@ const FollowerScheme = new mongoose.Schema(
     {
             following:  {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
+                ref: 'User',
+                required: true
 
             },
             followed: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
+                ref: 'User',
+                required: true
             }
     },
     {
@@ -21,4 +23,4 @@ const FollowerScheme = new mongoose.Schema(
 )
 
 // Exporto el módulo
-module.exports = mongoose.model("follower", FollowerScheme)
+module.exports = mongoose.model("Follower", FollowerScheme)

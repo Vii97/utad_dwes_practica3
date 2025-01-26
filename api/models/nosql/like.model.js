@@ -6,11 +6,13 @@ const LikeScheme = new mongoose.Schema(
     {
             user_liking:  {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
+                ref: 'User',
+                required: true
             },
             liked:  {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Post'
+                ref: 'Post',
+                required: true
             }
     },
     {
@@ -20,4 +22,4 @@ const LikeScheme = new mongoose.Schema(
 )
 
 // Exporto el módulo
-module.exports = mongoose.model("like", LikeScheme)
+module.exports = mongoose.model("Like", LikeScheme)

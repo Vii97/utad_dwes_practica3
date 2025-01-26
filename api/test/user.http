@@ -1,0 +1,50 @@
+// USER
+
+### Obtiene todos los usuarios
+
+GET http://localhost:3000/api/user/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q
+
+### Obtiene un usuario
+
+GET http://localhost:3000/api/user/679550fef6974f11e33b8d52 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q
+
+### Creo un usuario
+
+POST http://localhost:3000/api/user/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc4Mzc4NjksImV4cCI6MTczNzg0NTA2OX0.oFz6Jy6sqgkSfyI4v28EXOV6gOBuTraQHyqvCN5D4qE
+Content-Type: application/json
+
+{
+    "username": "Sova",
+    "fullname": "Sasha Novikov",
+    "description": "Iniciator fron Russia.",
+    "email": "thehunter@gmail.com",
+    "profile_pic": "https://static.wikia.nocookie.net/valorant/images/4/49/Sova_icon.png/revision/latest?cb=20220314032929&path-prefix=id",
+    "pwd": "sh0ck_d4rt"
+}
+
+### 
+
+PUT http://localhost:3000/api/user/67365186eeed3b908fca32a1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc4Mzc4NjksImV4cCI6MTczNzg0NTA2OX0.oFz6Jy6sqgkSfyI4v28EXOV6gOBuTraQHyqvCN5D4qE
+Content-Type: application/json
+
+{
+    "username": "Jett",
+    "fullname": "Sunwo Han",
+    "description": "Duelist from South Korea.",
+    "email": "jett123@gmail.com",
+    "profile_pic": "https://static.wikia.nocookie.net/valorant-lore/images/2/2a/Jett_-_Avatar.png/revision/latest?cb=20230629181633",
+    "pwd": "kimchi_1"
+}
+
+### Borrado (físico)
+
+DELETE http://localhost:3000/api/user/physical/67954f1cf6974f11e33b8d48 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q
+
+### Borrado (lógico)
+DELETE http://localhost:3000/api/user/logical/6795501ef6974f11e33b8d4d HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q

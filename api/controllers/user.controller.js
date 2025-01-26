@@ -1,68 +1,81 @@
+const { matchedData } = require('express-validator');
 const { userModel } = require('../models');
+const { handleHTTPResponse, handleHTTPError, INTERNAL_SERVER_ERROR } = require('../utils/handleResponse.util');
 
 // Funciones
-const getUser = async (removeEventListener, res) => {
+
+// Obtener todos los usuarios
+const getUser = async (req, res) => {
     try {
         const data = await userModel.find({});
-        res.send(data);
+        handleHTTPResponse(res, "Users retrieved successfully.", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving users.', error });
+        console.log("ERROR [user.controller / getUser]: " + error);
+        handleHTTPError(res, "Users couldn't be retrieved", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Get User document by ID
+// Obtener usuario por id
 const getUserByID = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = matchedData(req);
         const data = await userModel.findById(id);
-        if (!data) {
-            return res.status(404).send({ message: 'User not found.' });
-        }
-        res.send(data);
+        handleHTTPResponse(res, "User retrieved successfully.", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving user.', error });
+        console.log("ERROR [user.controller / getUserByID]: " + error);
+        handleHTTPError(res, "Users couldn't be retrieved", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Create new User document
+// crear usuario
 const createUser = async (req, res) => {
     try {
-        const { body } = req;
+        const body = matchedData(req);
         const data = await userModel.create(body);
-        res.send(data);
+        handleHTTPResponse(res, "User created successfully.", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error creating user.', error });
+        console.log("ERROR [user.controller / createUser]: " + error);
+        handleHTTPError(res, "Users couldn't be created", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Update User document by ID
+// Actualizar usuario
 const updateUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { body } = req;
+        const { id, ...body } = matchedData(req);
         const data = await userModel.findByIdAndUpdate(id, body);
-        if (!data) {
-            return res.status(404).send({ message: 'User not found.' });
-        }
-        res.send(data);
+        handleHTTPResponse(res, "User updated successfully.", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error updating user.', error });
+        console.log("ERROR [user.controller / updateUser]: " + error);
+        handleHTTPError(res, "Users couldn't be updated", INTERNAL_SERVER_ERROR);
     }
 };
 
-// Delete User document by ID
+// Borrado lógico
+const archiveUser = async (req, res) => {
+    try {
+        const { id } = matchedData(req);
+        const data = await userModel.delete({ _id: id });
+        handleHTTPResponse(res, "User archived successfully.", data);
+    } catch (error) {
+        console.log("ERROR [user.controller / archiveUser]: " + error);
+        handleHTTPError(res, "User couldn't be archived", INTERNAL_SERVER_ERROR);
+    }
+}
+
+// Borrado físico
 const deleteUser = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = matchedData(req);
         const data = await userModel.findByIdAndDelete(id);
-        if (!data) {
-            return res.status(404).send({ message: 'User not found.' });
-        }
-        res.send({ message: 'User deleted successfully.' });
+        handleHTTPResponse(res, "User deleted successfully.", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error deleting user.', error });
+        console.log("ERROR [user.controller / deleteUser]: " + error);
+        handleHTTPError(res, "User couldn't be deleted", INTERNAL_SERVER_ERROR);
     }
 };
+
+
 
 
 // Exportar módulo
@@ -71,5 +84,6 @@ module.exports = {
     getUserByID,
     createUser,
     updateUser,
+    archiveUser,
     deleteUser
 }

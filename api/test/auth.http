@@ -1,0 +1,22 @@
+
+POST http://localhost:3000/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Harbor",
+    "fullname": "Varun Batra",
+    "description": "Controller from India",
+    "email": "aquaman@gmail.com",
+    "profile_pic": "https://static.wikia.nocookie.net/valorant-lore/images/8/8a/Harbor_-_Avatar.png/revision/latest?cb=20230628090433",
+    "pwd": "b3_w4t3r"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+     "pwd": "Th3_4dm1N"
+}

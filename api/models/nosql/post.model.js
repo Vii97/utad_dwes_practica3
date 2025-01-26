@@ -6,13 +6,16 @@ const PostScheme = new mongoose.Schema(
     {
             user:  {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
+                ref: 'User',
+                required: true
             },
             txt:  {
-                type: String
+                type: String,
+                required: true
             },
             img:  {
-                type: String
+                type: String,
+                default: ''
             }
     },
     {
@@ -22,4 +25,4 @@ const PostScheme = new mongoose.Schema(
 )
 
 // Exporto el módulo
-module.exports = mongoose.model("post", PostScheme)
+module.exports = mongoose.model("Post", PostScheme)

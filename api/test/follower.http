@@ -1,0 +1,28 @@
+
+// FOLLOWER
+
+###
+
+GET http://localhost:3000/api/follower/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+
+###
+
+GET http://localhost:3000/api/follower/673658eceeed3b908fca32da HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+
+### Sova sigue a Viper
+
+POST http://localhost:3000/api/follower/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+Content-Type: application/json
+
+{
+    "user_follower": "67362fc86af1b60c160fbdd1",
+    "user_followed": "67362fa66af1b60c160fbdcf"
+}
+
+###
+
+DELETE http://localhost:3000/api/follower/67378c4bd06a6cef69391761 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk

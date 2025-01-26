@@ -12,7 +12,6 @@ const models = {
     postModel: require(path.join(__dirname, pathModels, 'post.model')),
     followerModel: require(path.join(__dirname, pathModels, 'follower.model')),
     likeModel: require(path.join(__dirname, pathModels, 'like.model')),
-    feedModel: require(path.join(__dirname, pathModels, 'feed.model')),
 }
 
 // Exporto el módulo

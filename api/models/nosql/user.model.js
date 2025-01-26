@@ -1,26 +1,37 @@
 // Importo Bibliotecas
 const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
 
 // Nombre de la tabla en SQL
 const UserScheme = new mongoose.Schema(
     {
             username: {
-                type: String
+                type: String,
+                required: true,
+                unique: true,
+                lowercase: true
             },
             fullname: {
-                type: String
+                type: String,
+                required: true
             },
             description:  {
-                type: String
+                type: String,
+                default: ""
             },
             email:  {
-                type: String
+                type: String,
+                required: true,
+                unique: true,
+                lowercase: true
             },
             profile_pic:  {
-                type: String
+                type: String,
+                default: ""
             },
             pwd:  {
-                type: String
+                type: String,
+                required: true
             }
     },
     {
@@ -29,5 +40,8 @@ const UserScheme = new mongoose.Schema(
     }
 )
 
+// Borrado lógico
+UserScheme.plugin(mongoose_delete, { overrideMethods: "all" });
+
 // Exporto el módulo
-module.exports = mongoose.model("user", UserScheme)
+module.exports = mongoose.model("User", UserScheme)

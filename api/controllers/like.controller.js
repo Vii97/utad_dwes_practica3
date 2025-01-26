@@ -1,65 +1,68 @@
-const { likeModel, userModel } = require('../models');
+const { likeModel } = require('../models');
+const { handleHTTPResponse, handleHTTPError, INTERNAL_SERVER_ERROR } = require('../utils/handleResponse.util');
+const { matchedData } = require('express-validator');
 
-// Funciones
-const getLike = async (removeEventListener, res) => {
+// Obtener todos los likes
+const getLike = async (req, res) => {
     try {
-        const data = await likeModel.find({});
-        res.send(data);
+        const data = await likeModel.find({}).populate('user post');
+        handleHTTPResponse(res, "Likes retrieved successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving likes.', error });
+        console.log("ERROR[like.controller/getLikes]:" + error);
+        handleHTTPError(res, "Error retrieving likes", INTERNAL_SERVER_ERROR);
     }
 };
 
+// Obtener un like por ID
 const getLikeByID = async (req, res) => {
     try {
-        const { id } = req.params;
-        const data = await likeModel.findById(id);
-        if (!data) {
-            return res.status(404).send({ message: 'Like not found.' });
-        }
-        res.send(data);
+        const { id } = matchedData(req); 
+        const data = await likeModel.findById(id).populate('user post');
+        handleHTTPResponse(res, "Like retrieved successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving like.', error });
+        console.log("ERROR[like.controller/getLikeById]:" + error);
+        handleHTTPError(res, "Error retrieving like", INTERNAL_SERVER_ERROR);
     }
 };
 
+// Crear un nuevo like
 const createLike = async (req, res) => {
     try {
-        const { body } = req;
-        const data = await likeModel.create(body);
-        res.send(data);
+        const { postId } = matchedData(req); 
+        const userId = req.user.id;
+        const newLike = new likeModel({ user: userId, post: postId });
+        const savedLike = await newLike.save();
+        handleHTTPResponse(res, "Like created successfully", savedLike);
     } catch (error) {
-        res.status(500).send({ message: 'Error creating like.', error });
+        console.log("ERROR[like.controller/createLike]:" + error);
+        handleHTTPError(res, "Error creating like", INTERNAL_SERVER_ERROR);
     }
 };
 
+// Actualizar un like
 const updateLike = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { body } = req;
+        const { id, ...body } = matchedData(req); 
         const data = await likeModel.findByIdAndUpdate(id, body);
-        if (!data) {
-            return res.status(404).send({ message: 'Like not found.' });
-        }
-        res.send(data);
+
+        handleHTTPResponse(res, "Like updated successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error updating like.', error });
+        console.log("ERROR[like.controller/updateLike]:" + error);
+        handleHTTPError(res, "Error updating like", INTERNAL_SERVER_ERROR);
     }
 };
 
+// Borrar un like
 const deleteLike = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = matchedData(req);
         const data = await likeModel.findByIdAndDelete(id);
-        if (!data) {
-            return res.status(404).send({ message: 'Like not found.' });
-        }
-        res.send({ message: 'Like deleted successfully' });
+        handleHTTPResponse(res, "Like deleted successfully", data);
     } catch (error) {
-        res.status(500).send({ message: 'Error deleting like.', error });
+        console.error("ERROR[like.controller/deleteLike]:" + error);
+        handleHTTPError(res, "Error deleting like", INTERNAL_SERVER_ERROR);
     }
 };
-
 
 // Exportar módulo
 module.exports = {
@@ -68,4 +71,4 @@ module.exports = {
     createLike,
     updateLike,
     deleteLike
-}
+};

@@ -1,0 +1,28 @@
+
+// LIKE
+
+###
+
+GET http://localhost:3000/api/like/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+
+###
+
+GET http://localhost:3000/api/like/67378d48d06a6cef69391767 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+
+### A Sova le gusta el post de la foto grupal
+
+POST http://localhost:3000/api/like/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
+Content-Type: application/json
+
+{
+    "user_liking": "67362fa66af1b60c160fbdcf",
+    "liked": "673785e9f3441da8d75fc8f4"
+}
+
+###
+
+DELETE http://localhost:3000/api/like/67378d48d06a6cef69391767 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlYjVhNDE2YmFjZmJjNmFmYTcxNjkiLCJpYXQiOjE3Mzc0MDU4NjAsImV4cCI6MTczNzQxMzA2MH0.WiwrAxl2VyhxkhGJT199PSjecWJ2fBBE2miDFZuq9zk
