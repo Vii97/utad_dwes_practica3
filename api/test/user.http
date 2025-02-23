@@ -3,7 +3,7 @@
 ### Obtiene todos los usuarios
 
 GET http://localhost:3000/api/user/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MTU0NDMsImV4cCI6MTczNzkyMjY0M30.ZLHVKQ9BUFY8wXRhalyb4BTfqKoFXwRnHmn2cF9OtYs
 
 ### Obtiene un usuario
 
@@ -46,5 +46,5 @@ DELETE http://localhost:3000/api/user/physical/67954f1cf6974f11e33b8d48 HTTP/1.1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q
 
 ### Borrado (lógico)
-DELETE http://localhost:3000/api/user/logical/6795501ef6974f11e33b8d4d HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MDc3MTMsImV4cCI6MTczNzkxNDkxM30.Z7lwp_BvWh53oaf8KuHSh3bPxP4tBOxRiHG5kwFIn_Q
+DELETE http://localhost:3000/api/user/logical/679678ea85acc42a6fdb4eea HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhlZTA5ZGRmMThiZjIyZGZmNTBlYWUiLCJpYXQiOjE3Mzc5MTU0NDMsImV4cCI6MTczNzkyMjY0M30.ZLHVKQ9BUFY8wXRhalyb4BTfqKoFXwRnHmn2cF9OtYs
